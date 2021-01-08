@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+    <title>小朱的天气预报</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h3 th:text="${reportModel.title}">waylau</h3>
+        <input type="hidden" th:value="${session.provinceId}" id="p_id">
+        <select style="width: 80px" class="custom-select" id="selectProvinceId">
+            <option th:each="province : ${reportModel.provinceList}"
+                    th:value="${province.id}" th:text="${province.province}"
+                    th:selected="${province.id eq reportModel.provinceId}"></option>
+        </select>
+        <select style="width: 80px" class="custom-select" id="selectCityId">
+            <option value="101010100">请选择城市</option>
+            <option name="cityId" th:each="city : ${reportModel.cityList}"
+                    th:value="${city.cityId}" th:text="${city.cityName}"
+                    th:selected="${city.cityId eq reportModel.cityId}"></option>
+        </select>
+    </div>
+    <div class="row">
+        <h1 class="text-success" th:text="${reportModel.report.city}">深圳</h1>
+    </div>
+    <div class="row">
+        <p>
+            当前温度：<span th:text="${reportModel.report.wendu}"></span>
+        </p>
+    </div>
+    <div class="row">
+        <p>
+            温馨提示：<span th:text="${reportModel.report.ganmao}"></span>
+        </p>
+    </div>
+    <div class="row">
+        <div class="card border-info" th:each="forecast : ${reportModel.report.forecast}">
+            <div class="card-body text-info">
+                <p class="card-text" th:text="${forecast.date}">日期</p>
+                <p class="card-text" th:text="${forecast.type}">天气类型</p>
+                <p class="card-text" th:text="${forecast.high}">最高温度</p>
+                <p class="card-text" th:text="${forecast.low}">最低温度</p>
+                <p class="card-text" th:text="${forecast.fengxiang}">风向</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/weather/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/weather/bootstrap.min.js}"></script>
+<!--<script type="text/javascript" th:src="@{/js/weather/report.js}"></script>-->
+<script type="text/javascript" th:src="@{/js/weather/test.js}"></script>
+</body>
+</html>

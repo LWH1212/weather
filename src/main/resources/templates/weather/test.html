@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+
+    <title>小朱的天气预报</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <select style="width: 80px" class="custom-select" id="selectProvinceId">
+            <option th:each="province : ${provinceList}"
+                    th:value="${province.id}" th:text="${province.province}"
+                    th:selected="${province.id} eq ${provinceId}"></option>
+        </select>
+        <select style="width: 80px" class="custom-select" id="selectCityId">
+            <option th:each="city : ${cityList}"
+                    th:value="${city.cityId}" th:text="${city.cityName}"></option>
+        </select>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/weather/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/weather/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/weather/test.js}"></script>
+</body>
+</html>
